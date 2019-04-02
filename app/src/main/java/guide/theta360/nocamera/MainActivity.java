@@ -162,14 +162,14 @@ public class MainActivity extends AppCompatActivity {
 /*         You can change the format to WEBP. You also need to change
         Bitmap.CompressFormat below*/
        // File myExternalFile = new File(basepath + "PROCESSED_IMAGE.WEBP");
-        File myExternalFile = new File(basepath + "PROCESSED_IMAGE.PNG");
+        File myExternalFile = new File(basepath + "PROCESSED_IMAGE.webp"); //changes made for challenge two to change the image compression need to change the file type
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Bitmap bitmap = getBitmap(thetaPicturePath);
 
         // bitmap.compress should be put on different thread
         imageExecutor.submit(() -> {
             // you can change the compress format to WEBP in the line below
-            bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.WEBP, 25, byteArrayOutputStream); // changes made for challenge two to change the image compression type and quality score
             try {
                 FileOutputStream fos = new FileOutputStream(myExternalFile);
                 fos.write(byteArrayOutputStream.toByteArray());
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
         Bitmap imgTheta = BitmapFactory.decodeFile(photoPath, options);
         ByteBuffer byteBufferTheta = ByteBuffer.allocate(imgTheta.getByteCount());
         imgTheta.copyPixelsToBuffer(byteBufferTheta);
-        Bitmap bmpTheta = Bitmap.createScaledBitmap(imgTheta, 400, 200, true);
+        Bitmap bmpTheta = Bitmap.createScaledBitmap(imgTheta, 800, 400, true); // changes made here for challenge one to change the image res.
         return bmpTheta;
     }
 
